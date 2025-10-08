@@ -1,7 +1,9 @@
 import { Music, Utensils, Sparkles, Camera, Mic, Palette } from "lucide-react";
-import partySpace from "@/assets/party-space.jpg";
-import animation from "@/assets/animation.jpg";
-import tableSetup from "@/assets/table-setup.jpg";
+import soundLight from "@/assets/sound-light.jpg";
+import tableService from "@/assets/table-service.jpg";
+import fridge from "@/assets/fridge.jpg";
+import tablecloths from "@/assets/tablecloths.jpg";
+import readyTable from "@/assets/ready-table.jpg";
 
 const services = [
   {
@@ -60,48 +62,56 @@ export const Services = () => {
 
           <div className="space-y-6">
             <img 
-              src={partySpace} 
-              alt="Лофт пространство Изи Пати" 
+              src={soundLight} 
+              alt="Профессиональный звук и свет" 
               className="rounded-3xl shadow-2xl w-full h-64 object-cover"
             />
             <div className="grid grid-cols-2 gap-6">
               <img 
-                src={animation} 
-                alt="Аниматоры на празднике" 
+                src={tableService} 
+                alt="Сервировка стола для праздника" 
                 className="rounded-2xl shadow-lg w-full h-48 object-cover"
               />
               <img 
-                src={tableSetup} 
-                alt="Сервировка стола" 
+                src={readyTable} 
+                alt="Готовый сервированный стол" 
                 className="rounded-2xl shadow-lg w-full h-48 object-cover"
               />
             </div>
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-center text-primary-foreground">
-          <h3 className="text-3xl font-bold mb-4">Сценарий под интересы ребенка</h3>
-          <p className="text-xl mb-6">
-            Вы можете сконструировать свой праздник сами, заполнить его любимыми программами и артистами!
-          </p>
-          <ul className="text-left max-w-2xl mx-auto space-y-3">
-            <li className="flex items-start">
-              <span className="text-yellow-300 mr-2">✓</span>
-              <span>Аренда лофта от 3-х часов и более</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-300 mr-2">✓</span>
-              <span>Сопровождающие ведущие на все мероприятие (минимум 2 часа)</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-300 mr-2">✓</span>
-              <span>Конкурсная тематическая программа - всегда разная!</span>
-            </li>
-            <li className="flex items-start">
-              <span className="text-yellow-300 mr-2">✓</span>
-              <span>Шоу и челленджи на выбор: научное шоу, крио-мороженое, серебряное шоу и многое другое</span>
-            </li>
-          </ul>
+        <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-primary-foreground">
+          <h3 className="text-3xl font-bold mb-6 text-center">Дополнительные услуги в аренде лофта</h3>
+          <div className="grid md:grid-cols-2 gap-8 mb-8">
+            <div className="space-y-4">
+              <img 
+                src={fridge} 
+                alt="Холодильник для торта" 
+                className="rounded-2xl shadow-lg w-full h-48 object-cover"
+              />
+              <p className="text-lg">Торт можно поставить в холодильник, есть лёд</p>
+            </div>
+            <div className="space-y-4">
+              <img 
+                src={tablecloths} 
+                alt="Скатерти и салфетки" 
+                className="rounded-2xl shadow-lg w-full h-48 object-cover"
+              />
+              <p className="text-lg">Скатерти белые или оранжевые, салфетки и специи</p>
+            </div>
+          </div>
+          <div className="space-y-4 max-w-3xl mx-auto">
+            <p className="text-lg">
+              <span className="font-bold">Чай в ассортименте и кофе</span> - для всех гостей
+            </p>
+            <p className="text-lg">
+              <span className="font-bold">Посуда:</span> тарелки для гостей керамические, блюда под фрукты, приборы, бокалы для вина, рюмки, салатники, стаканы под сок, для детей одноразовые тарелки, стаканчики и вилки
+            </p>
+            <p className="text-lg font-bold bg-yellow-300/20 p-4 rounded-lg">
+              Можете прийти за 15 минут до мероприятия, столы уже будут сервированы - поможем накрыть
+            </p>
+          </div>
         </div>
       </div>
     </section>
