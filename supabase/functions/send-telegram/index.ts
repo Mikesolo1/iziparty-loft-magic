@@ -29,7 +29,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Default chat ID (можно получить, отправив боту сообщение и проверив через getUpdates)
-    const targetChatId = chatId || '1088071611'; // Замените на ваш chat ID
+    const targetChatId = chatId || '4953636079'; // Замените на ваш chat ID
     
     const message = `🎉 Новая заявка на бронирование!\n\n📞 Телефон: ${phone}\n📅 Дата мероприятия: ${date}\n\n⏰ Время заявки: ${new Date().toLocaleString('ru-RU')}`;
     
