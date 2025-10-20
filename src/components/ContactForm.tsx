@@ -2,22 +2,60 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { Link } from "react-router-dom";
 
 export const ContactForm = () => {
   const { toast } = useToast();
   const [phone, setPhone] = useState("");
   const [date, setDate] = useState("");
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [personalDataAccepted, setPersonalDataAccepted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: "Заявка отправлена!",
-      description: "Мы свяжемся с вами в ближайшее время.",
-    });
-    setPhone("");
-    setDate("");
+    
+    if (!privacyAccepted || !personalDataAccepted) {
+      toast({
+        title: "Ошибка",
+        description: "Необходимо принять условия обработки персональных данных",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('send-telegram', {
+        body: { phone, date }
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Заявка отправлена!",
+        description: "Мы свяжемся с вами в ближайшее время.",
+      });
+      
+      setPhone("");
+      setDate("");
+      setPrivacyAccepted(false);
+      setPersonalDataAccepted(false);
+    } catch (error) {
+      console.error('Error sending form:', error);
+      toast({
+        title: "Ошибка",
+        description: "Не удалось отправить заявку. Попробуйте позже или позвоните нам.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -68,17 +106,51 @@ export const ContactForm = () => {
                 </div>
               </div>
 
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <Checkbox 
+                    id="privacy" 
+                    checked={privacyAccepted}
+                    onCheckedChange={(checked) => setPrivacyAccepted(checked as boolean)}
+                    required
+                  />
+                  <Label htmlFor="privacy" className="text-sm leading-relaxed cursor-pointer">
+                    Я ознакомлен(а) и согласен(на) с{" "}
+                    <Link to="/privacy-policy" className="text-primary hover:underline">
+                      Политикой конфиденциальности
+                    </Link>{" "}
+                    и{" "}
+                    <Link to="/cookie-notice" className="text-primary hover:underline">
+                      использованием файлов cookie
+                    </Link>
+                  </Label>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Checkbox 
+                    id="personal-data" 
+                    checked={personalDataAccepted}
+                    onCheckedChange={(checked) => setPersonalDataAccepted(checked as boolean)}
+                    required
+                  />
+                  <Label htmlFor="personal-data" className="text-sm leading-relaxed cursor-pointer">
+                    Я даю{" "}
+                    <Link to="/personal-data-consent" className="text-primary hover:underline">
+                      согласие на обработку персональных данных
+                    </Link>{" "}
+                    в соответствии с ФЗ-152
+                  </Label>
+                </div>
+              </div>
+
               <Button 
                 type="submit"
                 size="lg"
-                className="w-full py-6 text-xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary-glow hover:to-secondary rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+                disabled={isSubmitting || !privacyAccepted || !personalDataAccepted}
+                className="w-full py-6 text-xl font-bold bg-gradient-to-r from-primary to-secondary hover:from-primary-glow hover:to-secondary rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Отправить заявку
+                {isSubmitting ? "Отправка..." : "Отправить заявку"}
               </Button>
-
-              <p className="text-sm text-muted-foreground text-center">
-                Нажимая на кнопку, вы даете согласие на обработку персональных данных
-              </p>
             </form>
 
             <div className="border-t pt-8 space-y-6">
