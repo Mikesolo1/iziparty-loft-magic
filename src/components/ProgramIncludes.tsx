@@ -38,10 +38,10 @@ export const ProgramIncludes = () => {
             <Users className="h-12 w-12 text-secondary mb-4" />
             <h3 className="text-2xl font-bold mb-4">Сопровождающие ведущие</h3>
             <p className="text-muted-foreground mb-4">
-              Сопровождающие ведущие на все мероприятие, минимально 2 часа
+              Сопровождение праздника аниматором и помощником аниматора
             </p>
             <p className="text-muted-foreground">
-              Сопровождают детей в играх, подбирают программу под их интересы и настроение
+              Играют с детьми, следят за безопасностью подбирают программу под их интересы и настроение
             </p>
           </div>
 
@@ -62,7 +62,7 @@ export const ProgramIncludes = () => {
 
           <div className="bg-card rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-border">
             <PartyPopper className="h-12 w-12 text-pink-500 mb-4" />
-            <h3 className="text-2xl font-bold mb-4">Шоу и челленджи на выбор</h3>
+            <h3 className="text-2xl font-bold mb-4">Шоу и услуги на выбор</h3>
             <ul className="space-y-2 text-muted-foreground">
               <li className="flex items-start">
                 <span className="text-primary mr-2">★</span>

@@ -44,7 +44,7 @@ export const Hero = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
-            <div className="text-4xl font-bold text-yellow-300 mb-2">1-18</div>
+            <div className="text-4xl font-bold text-yellow-300 mb-2">для 1-18</div>
             <div className="text-sm text-white">лет</div>
           </div>
           <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">

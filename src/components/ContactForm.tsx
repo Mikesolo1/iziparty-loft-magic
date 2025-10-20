@@ -85,7 +85,7 @@ export const ContactForm = () => {
               <div className="flex items-start gap-4">
                 <Phone className="h-6 w-6 text-primary flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-xl mb-1">Телефон</h3>
+                  <h3 className="font-bold text-xl mb-1">Телефон и WhatsApp</h3>
                   <a href="tel:+79289606929" className="text-lg text-primary hover:underline">
                     +7 928 960 69 29
                   </a>
@@ -97,7 +97,7 @@ export const ContactForm = () => {
                 <div>
                   <h3 className="font-bold text-xl mb-1">Адрес</h3>
                   <p className="text-lg text-muted-foreground">
-                    Ростов-на-Дону, центр города
+                    Ростов-на-Дону, Лермонтовская, 111 этаж 2
                   </p>
                 </div>
               </div>

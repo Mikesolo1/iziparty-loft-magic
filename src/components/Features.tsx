@@ -44,7 +44,7 @@ export const Features = () => {
     <section className="py-20 bg-gradient-to-b from-background to-muted">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-          Почему стоит организовать праздник
+          7 причин чтобы устроить праздник 
         </h2>
         <p className="text-center text-2xl mb-16 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent font-bold">
           в Изи Пати

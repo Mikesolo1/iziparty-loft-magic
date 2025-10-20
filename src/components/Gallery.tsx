@@ -21,7 +21,7 @@ export const Gallery = () => {
     <section className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-          Изи Пати - Лофт детских праздников
+          Изи Пати - Лофт- пространство детских праздников
         </h2>
         <p className="text-center text-xl text-muted-foreground mb-16">
           и мероприятий
