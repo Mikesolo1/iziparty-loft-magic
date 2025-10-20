@@ -8,6 +8,7 @@ const corsHeaders = {
 interface TelegramRequest {
   phone: string;
   date: string;
+  name?: string;
   chatId?: string;
 }
 
@@ -17,7 +18,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { phone, date, chatId }: TelegramRequest = await req.json();
+    const { phone, date, name, chatId }: TelegramRequest = await req.json();
     
     const botToken = Deno.env.get('TELEGRAM_BOT_TOKEN');
     if (!botToken) {
@@ -28,10 +29,11 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    // Default chat ID (можно получить, отправив боту сообщение и проверив через getUpdates)
-    const targetChatId = chatId || '6833832120'; // Замените на ваш chat ID
+    // Default chat ID - получите свой, отправив боту /start и проверив getUpdates
+    const targetChatId = chatId || '6833832120';
     
-    const message = `🎉 Новая заявка на бронирование!\n\n📞 Телефон: ${phone}\n📅 Дата мероприятия: ${date}\n\n⏰ Время заявки: ${new Date().toLocaleString('ru-RU')}`;
+    const nameText = name ? `👤 Имя: ${name}\n` : '';
+    const message = `🎉 Новая заявка на бронирование!\n\n${nameText}📞 Телефон: ${phone}\n📅 Дата мероприятия: ${date}\n\n⏰ Время заявки: ${new Date().toLocaleString('ru-RU')}`;
     
     const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     
