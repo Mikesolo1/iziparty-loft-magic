@@ -24,6 +24,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    // Берём только нужные поля, игнорируем любые лишние
     const { phone, date, name }: TelegramRequest = await req.json();
 
     if (!phone || !date) {
@@ -41,8 +42,8 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
-    // 👇 Всегда отправляем в группу
-    const targetChatId = -1002916514018; // ID супергруппы
+    // 🔒 Жёстко фиксируем числовой chat_id супергруппы
+    const targetChatId: number = -1002916514018;
 
     const nameText = name ? `👤 Имя: ${name}\n` : '';
     const message = `🎉 Новая заявка на бронирование!\n\n${nameText}📞 Телефон: ${phone}\n📅 Дата мероприятия: ${date}\n\n⏰ Время заявки: ${new Date().toLocaleString('ru-RU')}`;
@@ -53,7 +54,7 @@ const handler = async (req: Request): Promise<Response> => {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        chat_id: targetChatId,
+        chat_id: targetChatId, // число, не строка
         text: message,
         parse_mode: 'HTML',
       }),
