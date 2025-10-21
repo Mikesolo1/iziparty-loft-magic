@@ -5,7 +5,7 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// ID супергруппы
+// ID супергруппы (используйте числовой формат для супергрупп)
 const SUPERGROUP_CHAT_ID = -1002916514018;
 
 interface TelegramRequest {
@@ -76,17 +76,23 @@ ${guestsText}📅 Дата мероприятия: ${date}
 
     console.log("📝 Сформировано сообщение для отправки");
     console.log("🎯 Целевой chat_id супергруппы:", SUPERGROUP_CHAT_ID);
+    console.log("🔑 Тип chat_id:", typeof SUPERGROUP_CHAT_ID);
+
+    // Подготавливаем тело запроса
+    const telegramPayload = {
+      chat_id: SUPERGROUP_CHAT_ID,
+      text: message,
+      parse_mode: "HTML",
+    };
+    
+    console.log("📤 Отправляемый payload:", JSON.stringify(telegramPayload));
 
     // Отправляем сообщение в Telegram
     const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
     const telegramResponse = await fetch(telegramUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: SUPERGROUP_CHAT_ID,
-        text: message,
-        parse_mode: "HTML",
-      }),
+      body: JSON.stringify(telegramPayload),
     });
 
     const responseData = await telegramResponse.json();
