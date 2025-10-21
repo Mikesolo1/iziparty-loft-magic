@@ -9,7 +9,6 @@ interface TelegramRequest {
   phone: string;
   date: string;
   name?: string;
-  chatId?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -17,29 +16,40 @@ const handler = async (req: Request): Promise<Response> => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  if (req.method !== 'POST') {
+    return new Response(JSON.stringify({ error: 'Method not allowed' }), {
+      status: 405,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
+  }
+
   try {
     const { phone, date, name }: TelegramRequest = await req.json();
-    
-    const botToken = Deno.env.get('TELEGRAM_BOT_TOKEN');
-    if (!botToken) {
-      console.error('TELEGRAM_BOT_TOKEN not configured');
-      return new Response(
-        JSON.stringify({ error: 'Bot token not configured' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+
+    if (!phone || !date) {
+      return new Response(JSON.stringify({ error: 'Phone and date are required' }), {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
-    // 👇 Жёстко задаём ID твоего Telegram-группы
-    const targetChatId = '-1002916514018';
-    
+    const botToken = Deno.env.get('TELEGRAM_BOT_TOKEN');
+    if (!botToken) {
+      return new Response(JSON.stringify({ error: 'Bot token not configured' }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
+    // 👇 Всегда отправляем в группу
+    const targetChatId = -1002916514018; // ID супергруппы
+
     const nameText = name ? `👤 Имя: ${name}\n` : '';
     const message = `🎉 Новая заявка на бронирование!\n\n${nameText}📞 Телефон: ${phone}\n📅 Дата мероприятия: ${date}\n\n⏰ Время заявки: ${new Date().toLocaleString('ru-RU')}`;
 
-    const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
     console.log('📤 Отправляем сообщение в группу Telegram:', { chatId: targetChatId, phone, date });
 
-    const response = await fetch(telegramApiUrl, {
+    const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -53,24 +63,24 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (!response.ok) {
       console.error('Telegram API error:', responseData);
-      return new Response(
-        JSON.stringify({ error: 'Failed to send message to Telegram', details: responseData }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
+      return new Response(JSON.stringify({ error: 'Failed to send message to Telegram', details: responseData }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
     }
 
-    console.log('✅ Message sent successfully to group:', targetChatId);
+    console.log('✅ Сообщение успешно отправлено в группу:', targetChatId);
 
-    return new Response(
-      JSON.stringify({ success: true, data: responseData }),
-      { status: 200, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
+    return new Response(JSON.stringify({ success: true, data: responseData }), {
+      status: 200,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
   } catch (error: any) {
-    console.error('Error in send-telegram function:', error);
-    return new Response(
-      JSON.stringify({ error: error.message }),
-      { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    );
+    console.error('Ошибка функции send-telegram:', error);
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+    });
   }
 };
 
