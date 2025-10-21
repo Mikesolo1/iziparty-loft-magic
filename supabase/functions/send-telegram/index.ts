@@ -14,7 +14,10 @@ interface TelegramRequest {
   date: string;
   name?: string;
 }
-
+// Добавьте в начало функции handler, после получения данных:
+console.log("📝 Получены данные:", { phone, date, name, guests });
+console.log("🎯 Отправляем в chat_id:", TARGET_CHAT_ID);
+console.log("🤖 Используем бота с токеном:", botToken ? "***" + botToken.slice(-4) : "не указан");
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
