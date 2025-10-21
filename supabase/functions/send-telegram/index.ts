@@ -19,6 +19,7 @@ console.log("📝 Получены данные:", { phone, date, name, guests }
 console.log("🎯 Отправляем в chat_id:", TARGET_CHAT_ID);
 console.log("🤖 Используем бота с токеном:", botToken ? "***" + botToken.slice(-4) : "не указан");
 const handler = async (req: Request): Promise<Response> => {
+  console.log("TARGET_CHAT_ID в начале функции:", TARGET_CHAT_ID);
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
