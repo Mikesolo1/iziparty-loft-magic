@@ -14,7 +14,7 @@ export const Hero = () => {
       <div className="relative z-10 container mx-auto px-4 pt-32 pb-20 text-center">
         <div className="flex justify-center mb-12">
           <a 
-            href="https://taplink.cc/iziparti23" 
+            href="https://iziparty.taplink.ws/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="group relative"
