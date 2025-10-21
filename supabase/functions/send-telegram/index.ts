@@ -6,20 +6,24 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
-// Жестко прописанный chat_id супергруппы
-const TARGET_CHAT_ID = -1002916514018; // <- замените на ваш chat_id супергруппы
+// ЖЕСТКО прописанный chat_id супергруппы - не меняется!
+const TARGET_CHAT_ID = -1002916514018;
 
 interface TelegramRequest {
   phone: string;
   date: string;
   name?: string;
+  guests?: string;
 }
-// Добавьте в начало функции handler, после получения данных:
-console.log("📝 Получены данные:", { phone, date, name, guests });
-console.log("🎯 Отправляем в chat_id:", TARGET_CHAT_ID);
-console.log("🤖 Используем бота с токеном:", botToken ? "***" + botToken.slice(-4) : "не указан");
+
 const handler = async (req: Request): Promise<Response> => {
-  console.log("TARGET_CHAT_ID в начале функции:", TARGET_CHAT_ID);
+  // Диагностика при каждом запросе
+  console.log("=== ДИАГНОСТИКА ===");
+  console.log("TARGET_CHAT_ID:", TARGET_CHAT_ID);
+  console.log("Тип TARGET_CHAT_ID:", typeof TARGET_CHAT_ID);
+  console.log("Ожидаем супергруппу с ID:", -1002916514018);
+  console.log("===================");
+
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
   }
@@ -32,7 +36,7 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { phone, date, name }: TelegramRequest = await req.json();
+    const { phone, date, name, guests }: TelegramRequest = await req.json();
 
     if (!phone || !date) {
       return new Response(JSON.stringify({ error: "Phone and date are required" }), {
@@ -49,22 +53,37 @@ const handler = async (req: Request): Promise<Response> => {
       });
     }
 
+    // Формируем сообщение
     const nameText = name ? `👤 Имя: ${name}\n` : "";
-    const message = `🎉 Новая заявка на бронирование!\n\n${nameText}📞 Телефон: ${phone}\n📅 Дата мероприятия: ${date}\n\n⏰ Время заявки: ${new Date().toLocaleString("ru-RU")}`;
+    const guestsText = guests ? `👥 Количество гостей: ${guests}\n` : "";
+    const message = `🎉 Новая заявка на бронирование!\n\n${nameText}📞 Телефон: ${phone}\n${guestsText}📅 Дата мероприятия: ${date}\n\n⏰ Время заявки: ${new Date().toLocaleString("ru-RU")}`;
 
-    console.log("📤 Отправляем сообщение в группу Telegram:", { chatId: TARGET_CHAT_ID, phone, date });
+    console.log("📤 Отправляем сообщение в Telegram:", { 
+      targetChatId: TARGET_CHAT_ID,
+      phone, 
+      date, 
+      name, 
+      guests 
+    });
+
+    // ЖЕСТКО прописываем chat_id в теле запроса
+    const telegramRequestBody = {
+      chat_id: -1002916514018, // Прямо здесь прописываем нужный ID
+      text: message,
+      parse_mode: "HTML",
+    };
+
+    console.log("📨 Тело запроса к Telegram:", JSON.stringify(telegramRequestBody));
 
     const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: TARGET_CHAT_ID,
-        text: message,
-        parse_mode: "HTML",
-      }),
+      body: JSON.stringify(telegramRequestBody),
     });
 
     const responseData = await response.json();
+
+    console.log("📩 Ответ от Telegram API:", JSON.stringify(responseData, null, 2));
 
     if (!response.ok || !responseData.ok) {
       console.error("❌ Ошибка Telegram API:", responseData);
@@ -74,7 +93,14 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log("✅ Сообщение успешно отправлено в группу:", TARGET_CHAT_ID);
+    // Проверяем, куда фактически ушло сообщение
+    if (responseData.result.chat.id !== -1002916514018) {
+      console.warn("⚠️ ВНИМАНИЕ: Сообщение ушло не в ту группу!");
+      console.warn("Ожидался chat_id: -1002916514018");
+      console.warn("Фактический chat_id:", responseData.result.chat.id);
+    }
+
+    console.log("✅ Сообщение успешно отправлено");
 
     return new Response(JSON.stringify({ success: true, data: responseData }), {
       status: 200,
@@ -88,5 +114,10 @@ const handler = async (req: Request): Promise<Response> => {
     });
   }
 };
+
+// Логи при запуске сервера
+console.log("🚀 Сервер запущен");
+console.log("🎯 Целевой chat_id супергруппы:", TARGET_CHAT_ID);
+console.log("✅ Ожидаем сообщения в группе: -1002916514018");
 
 serve(handler);
