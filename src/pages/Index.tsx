@@ -1,7 +1,8 @@
+import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { Features } from "@/components/Features";
 import { Gallery } from "@/components/Gallery";
-import { Services } from "@/components/Services";
+import { Pricing } from "@/components/Pricing";
 import { ProgramIncludes } from "@/components/ProgramIncludes";
 import { Testimonials } from "@/components/Testimonials";
 import { ContactForm } from "@/components/ContactForm";
@@ -10,10 +11,11 @@ import { Footer } from "@/components/Footer";
 const Index = () => {
   return (
     <main className="min-h-screen">
+      <Navigation />
       <Hero />
       <Features />
       <Gallery />
-      <Services />
+      <Pricing />
       <ProgramIncludes />
       <Testimonials />
       <ContactForm />

@@ -41,7 +41,7 @@ const features = [
 
 export const Features = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-background to-muted">
+    <section id="features" className="py-20 bg-gradient-to-b from-background to-muted">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
           7 причин чтобы устроить праздник 

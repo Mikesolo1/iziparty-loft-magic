@@ -59,7 +59,7 @@ export const ContactForm = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-primary via-secondary to-accent">
+    <section id="contacts" className="py-20 bg-gradient-to-br from-primary via-secondary to-accent">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl">

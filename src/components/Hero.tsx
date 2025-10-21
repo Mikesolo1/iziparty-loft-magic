@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+import { Phone, ExternalLink } from "lucide-react";
 import heroImage from "@/assets/hero-background.png";
-import logo from "@/assets/logo.png";
 import qrCode from "@/assets/qr-code.png";
 import { PriceDialog } from "./PriceDialog";
 export const Hero = () => {
@@ -12,11 +11,27 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-secondary/60 to-accent/70" />
       </div>
       
-      <div className="relative z-10 container mx-auto px-4 py-20 text-center">
-        <div className="flex justify-center items-center gap-8 mb-8">
-          <img src={logo} alt="ИЗИ ПАТИ" className="w-32 h-32 md:w-40 md:h-40 object-contain animate-fade-in" />
-          <a href="https://taplink.cc/iziparti23" target="_blank" rel="noopener noreferrer" className="hover-scale">
-            <img src={qrCode} alt="QR код TapLink" className="w-24 h-24 md:w-32 md:h-32 object-contain bg-white p-2 rounded-2xl shadow-lg" />
+      <div className="relative z-10 container mx-auto px-4 pt-32 pb-20 text-center">
+        <div className="flex justify-center mb-12">
+          <a 
+            href="https://taplink.cc/iziparti23" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="group relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity" />
+            <div className="relative bg-white/95 backdrop-blur-sm p-6 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105">
+              <img 
+                src={qrCode} 
+                alt="QR код TapLink" 
+                className="w-32 h-32 md:w-40 md:h-40 object-contain mb-3" 
+              />
+              <div className="flex items-center justify-center gap-2 text-sm font-semibold text-gray-800">
+                <span>Наш TapLink</span>
+                <ExternalLink className="h-4 w-4" />
+              </div>
+              <p className="text-xs text-gray-600 mt-1">Все наши контакты и соцсети</p>
+            </div>
           </a>
         </div>
         <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in">

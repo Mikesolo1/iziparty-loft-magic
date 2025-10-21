@@ -2,7 +2,7 @@ import { Clock, Users, Sparkles, PartyPopper } from "lucide-react";
 
 export const ProgramIncludes = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-muted to-background">
+    <section id="program" className="py-20 bg-gradient-to-b from-muted to-background">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
           Что будет входить в Вашу программу
