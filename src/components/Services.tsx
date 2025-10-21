@@ -4,6 +4,7 @@ import tableService from "@/assets/table-service.jpg";
 import fridge from "@/assets/fridge.jpg";
 import tablecloths from "@/assets/tablecloths.jpg";
 import readyTable from "@/assets/ready-table.jpg";
+import heroBackground from "@/assets/hero-background.png";
 
 const services = [
   {
@@ -81,7 +82,16 @@ export const Services = () => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-primary to-secondary rounded-3xl p-12 text-primary-foreground">
+        <div 
+          className="relative rounded-3xl p-12 overflow-hidden"
+          style={{
+            backgroundImage: `url(${heroBackground})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80" />
+          <div className="relative z-10 text-primary-foreground">
           <h3 className="text-3xl font-bold mb-6 text-center">Дополнительные услуги в аренде лофта</h3>
           <div className="grid md:grid-cols-2 gap-8 mb-8">
             <div className="space-y-4">
@@ -111,6 +121,7 @@ export const Services = () => {
             <p className="text-lg font-bold bg-yellow-300/20 p-4 rounded-lg">
               Можете прийти за 15 минут до мероприятия, столы уже будут сервированы - поможем накрыть
             </p>
+          </div>
           </div>
         </div>
       </div>

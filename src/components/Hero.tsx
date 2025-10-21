@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Phone } from "lucide-react";
-import heroImage from "@/assets/hero-party.jpg";
+import heroImage from "@/assets/hero-background.png";
+import logo from "@/assets/logo.png";
+import qrCode from "@/assets/qr-code.png";
 import { PriceDialog } from "./PriceDialog";
 
 export const Hero = () => {
@@ -10,10 +12,21 @@ export const Hero = () => {
         className="absolute inset-0 bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-secondary/80 to-accent/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/70 via-secondary/60 to-accent/70" />
       </div>
       
       <div className="relative z-10 container mx-auto px-4 py-20 text-center">
+        <div className="flex justify-center items-center gap-8 mb-8">
+          <img src={logo} alt="ИЗИ ПАТИ" className="w-32 h-32 md:w-40 md:h-40 object-contain animate-fade-in" />
+          <a 
+            href="https://taplink.cc/iziparti23" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="hover-scale"
+          >
+            <img src={qrCode} alt="QR код TapLink" className="w-24 h-24 md:w-32 md:h-32 object-contain bg-white p-2 rounded-2xl shadow-lg" />
+          </a>
+        </div>
         <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 animate-fade-in">
           Уникальный праздник для
           <br />
