@@ -35,14 +35,14 @@ export const CallbackDialog = ({ children }: CallbackDialogProps) => {
 
     setIsSubmitting(true);
 
-    try {
-      const { error } = await supabase.functions.invoke("send-telegram", {
-        body: {
-          name,
-          phone,
-          type: "callback",
-        },
-      });
+  const { error } = await supabase.functions.invoke("send-telegram", {
+  body: {
+    name,
+    phone,
+    date: new Date().toISOString(), // добавляем текущую дату
+    type: "callback",
+  },
+});
 
       if (error) throw error;
 
