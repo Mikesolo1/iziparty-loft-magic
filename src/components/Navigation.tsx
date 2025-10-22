@@ -30,13 +30,24 @@ export const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <button 
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center hover-scale"
-          >
-            <img src={logo} alt="ИЗИ ПАТИ" className="h-16 w-16 object-contain" />
-          </button>
+          {/* Logo and Mobile Phone */}
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="flex items-center hover-scale"
+            >
+              <img src={logo} alt="ИЗИ ПАТИ" className="h-16 w-16 object-contain" />
+            </button>
+            
+            {/* Mobile Phone Number - Always Visible */}
+            <a 
+              href="tel:+79289606929" 
+              className="lg:hidden flex items-center gap-2 text-primary font-bold text-sm"
+            >
+              <Phone className="h-4 w-4" />
+              <span>+7 928 960 69 29</span>
+            </a>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
