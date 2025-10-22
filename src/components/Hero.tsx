@@ -52,10 +52,11 @@ export const Hero = () => {
               Узнать стоимость
             </Button>
           </PriceDialog>
-          <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/20 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary rounded-full font-bold transition-all duration-300">
+        <a href="tel:+79289606929">   <Button size="lg" variant="outline" className="text-lg px-8 py-6 bg-white/20 backdrop-blur-sm text-white border-2 border-white hover:bg-white hover:text-primary rounded-full font-bold transition-all duration-300">
             <Phone className="mr-2 h-5 w-5" />
             +7 928 960 69 29
           </Button>
+           </a>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
