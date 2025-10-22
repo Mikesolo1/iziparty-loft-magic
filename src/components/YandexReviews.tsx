@@ -155,7 +155,7 @@ export const YandexReviews = () => {
               {/* Yandex Map Embed */}
               <div className="rounded-xl overflow-hidden shadow-md mb-4">
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A6e8b5d1e8c9f8a1c8b5d1e8c9f8a1c8b&amp;source=constructor"
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3Abb3b73580a1509b7cd675de83fc6b8e82683196526c1f7dbf269cb34f82d1eb8&amp;source=constructor"
                   width="100%"
                   height="300"
                   frameBorder="0"
