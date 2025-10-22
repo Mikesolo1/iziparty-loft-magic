@@ -5,7 +5,7 @@ import { Gallery } from "@/components/Gallery";
 import { Pricing } from "@/components/Pricing";
 import { Interior } from "@/components/Interior";
 import { ProgramIncludes } from "@/components/ProgramIncludes";
-import { Testimonials } from "@/components/Testimonials";
+import { YandexReviews } from "@/components/YandexReviews";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
 
@@ -19,7 +19,7 @@ const Index = () => {
       <Pricing />
       <Interior />
       <ProgramIncludes />
-      <Testimonials />
+      <YandexReviews />
       <ContactForm />
       <Footer />
     </main>
