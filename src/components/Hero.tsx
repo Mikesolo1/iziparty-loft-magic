@@ -81,4 +81,24 @@ export const Hero = () => {
             className="group relative inline-flex flex-col items-center"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-3xl blur-xl opacity-40 group-hover:opacity-60 transition-opacity" />
-            <div className="relative bg-wh
+            <div className="relative bg-white/90 backdrop-blur-sm p-4 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
+              <img
+                src={qrCode}
+                alt="QR-код TapLink"
+                loading="lazy"
+                className="w-28 h-28 md:w-32 md:h-32 object-contain mb-2"
+              />
+              <div className="flex items-center justify-center gap-2 text-sm font-semibold text-gray-800">
+                <span>Наш TapLink</span>
+                <ExternalLink className="h-4 w-4" />
+              </div>
+              <p className="text-xs text-gray-600 mt-1">
+                Все наши контакты и соцсети
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
