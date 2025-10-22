@@ -48,7 +48,8 @@ export const PriceDialog = ({ children }: PriceDialogProps) => {
         body: { 
           phone, 
           date: "Запрос стоимости",
-          name 
+          name,
+          type: "price"
         }
       });
 

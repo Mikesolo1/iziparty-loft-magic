@@ -32,7 +32,7 @@ export const ContactForm = () => {
 
     try {
       const { data, error } = await supabase.functions.invoke('send-telegram', {
-        body: { phone, date }
+        body: { phone, date, type: "booking" }
       });
 
       if (error) throw error;

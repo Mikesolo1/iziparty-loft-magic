@@ -20,6 +20,7 @@ export const Navigation = () => {
     { label: "Преимущества", id: "features" },
     { label: "Галерея", id: "gallery" },
     { label: "Тарифы", id: "pricing" },
+    { label: "Интерьер", id: "interior" },
     { label: "Программа", id: "program" },
     { label: "Отзывы", id: "testimonials" },
     { label: "Контакты", id: "contacts" },
@@ -79,6 +80,15 @@ export const Navigation = () => {
         {mobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-border">
             <div className="flex flex-col gap-4">
+              {/* Prominent Phone Number at Top */}
+              <a 
+                href="tel:+79289606929" 
+                className="flex items-center justify-center gap-3 bg-primary/10 hover:bg-primary/20 transition-colors py-4 rounded-lg border border-primary/20"
+              >
+                <Phone className="h-5 w-5 text-primary" />
+                <span className="font-bold text-lg text-primary">+7 928 960 69 29</span>
+              </a>
+              
               {navItems.map((item) => (
                 <button
                   key={item.id}
@@ -88,13 +98,7 @@ export const Navigation = () => {
                   {item.label}
                 </button>
               ))}
-              <a 
-                href="tel:+79289606929" 
-                className="flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors py-2"
-              >
-                <Phone className="h-4 w-4" />
-                <span className="font-medium">+7 928 960 69 29</span>
-              </a>
+              
               <CallbackDialog>
                 <Button variant="outline" className="w-full">Обратный звонок</Button>
               </CallbackDialog>

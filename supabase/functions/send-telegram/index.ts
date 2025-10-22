@@ -13,6 +13,7 @@ interface TelegramRequest {
   date: string;
   name?: string;
   guests?: string;
+  type?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -47,7 +48,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     // Парсим данные из запроса
     const body: TelegramRequest = await req.json();
-    const { phone, date, name, guests } = body;
+    const { phone, date, name, guests, type } = body;
 
     if (!phone || !date) {
       console.error("❌ Отсутствуют обязательные поля: phone или date");
@@ -60,14 +61,26 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log("📥 Получены данные заявки:", { phone, date, name, guests });
+    console.log("📥 Получены данные заявки:", { phone, date, name, guests, type });
+
+    // Определяем тип заявки
+    let formType = "📋 Общая заявка";
+    if (type === "callback") {
+      formType = "📞 Обратный звонок";
+    } else if (type === "price") {
+      formType = "💰 Запрос стоимости";
+    } else if (type === "booking") {
+      formType = "🎉 Бронирование";
+    } else if (type === "contact") {
+      formType = "✉️ Контактная форма";
+    }
 
     // Формируем текст сообщения
     const nameText = name ? `👤 Имя: ${name}\n` : "";
     const guestsText = guests ? `👥 Количество гостей: ${guests}\n` : "";
     const currentTime = new Date().toLocaleString("ru-RU", { timeZone: "Europe/Moscow" });
     
-    const message = `🎉 Новая заявка на бронирование!
+    const message = `${formType}
 
 ${nameText}📞 Телефон: ${phone}
 ${guestsText}📅 Дата мероприятия: ${date}
