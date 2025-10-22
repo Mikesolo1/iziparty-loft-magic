@@ -21,7 +21,7 @@ export const Gallery = () => {
     <section id="gallery" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-          Изи Пати - Лофт- пространство детских праздников
+          Изи Пати — Лофт-пространство детских праздников
         </h2>
         <p className="text-center text-xl text-muted-foreground mb-16">
           и мероприятий
@@ -36,11 +36,27 @@ export const Gallery = () => {
               <img
                 src={image.src}
                 alt={image.alt}
+                loading="lazy"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
           ))}
+
+          {/* Плитка-ссылка на ВК */}
+          <a
+            href="https://vk.com/izi_party?z=album-224568648_301406320"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col items-center justify-center aspect-square rounded-2xl bg-muted hover:bg-muted/70 transition-all duration-300 shadow-lg hover:shadow-2xl overflow-hidden"
+          >
+            <div className="text-6xl font-bold text-primary group-hover:scale-110 transition-transform duration-300">
+              +
+            </div>
+            <div className="text-center text-sm md:text-base font-medium text-foreground mt-2 group-hover:text-primary transition-colors duration-300">
+              Больше фото<br />в нашем сообществе ВК
+            </div>
+          </a>
         </div>
       </div>
     </section>
