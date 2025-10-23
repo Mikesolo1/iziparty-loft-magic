@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import { PriceDialog } from "./PriceDialog";
+import patternBg from "@/assets/pattern-background.png";
 
 export const Pricing = () => {
   const mainPackages = [
@@ -98,8 +99,8 @@ export const Pricing = () => {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-gradient-to-b from-background to-muted/20">
-      <div className="container mx-auto px-4">
+    <section id="pricing" className="py-20 bg-gradient-to-b from-background to-muted/20 relative" style={{ backgroundImage: `url(${patternBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
             Выбирайте готовую программу

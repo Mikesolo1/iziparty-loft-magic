@@ -1,9 +1,10 @@
 import { Clock, Users, Sparkles, PartyPopper } from "lucide-react";
+import patternBg from "@/assets/pattern-background.png";
 
 export const ProgramIncludes = () => {
   return (
-    <section id="program" className="py-20 bg-gradient-to-b from-muted to-background">
-      <div className="container mx-auto px-4">
+    <section id="program" className="py-20 bg-gradient-to-b from-muted to-background relative" style={{ backgroundImage: `url(${patternBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
           Что будет входить в Вашу программу
         </h2>

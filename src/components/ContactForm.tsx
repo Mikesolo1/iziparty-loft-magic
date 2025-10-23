@@ -7,6 +7,7 @@ import { Calendar, Phone, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Link } from "react-router-dom";
+import patternBg from "@/assets/pattern-background.png";
 
 export const ContactForm = () => {
   const { toast } = useToast();
@@ -59,8 +60,8 @@ export const ContactForm = () => {
   };
 
   return (
-    <section id="contacts" className="py-20 bg-gradient-to-br from-primary via-secondary to-accent">
-      <div className="container mx-auto px-4">
+    <section id="contacts" className="py-20 bg-gradient-to-br from-primary via-secondary to-accent relative" style={{ backgroundImage: `url(${patternBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white/95 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-2xl">
             <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">

@@ -4,6 +4,7 @@ import feature3 from "@/assets/feature-3.png";
 import feature4 from "@/assets/feature-4.png";
 import feature5 from "@/assets/feature-5.png";
 import feature6 from "@/assets/feature-6.png";
+import patternBg from "@/assets/pattern-background.png";
 
 const features = [
   {
@@ -40,8 +41,8 @@ const features = [
 
 export const Features = () => {
   return (
-    <section id="features" className="py-20 bg-gradient-to-b from-background to-muted">
-      <div className="container mx-auto px-4">
+    <section id="features" className="py-20 bg-gradient-to-b from-background to-muted relative" style={{ backgroundImage: `url(${patternBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className="container mx-auto px-4 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
           7 причин чтобы устроить праздник 
         </h2>
