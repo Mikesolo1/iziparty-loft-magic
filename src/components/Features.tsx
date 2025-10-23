@@ -1,41 +1,40 @@
-import { Sparkles, Heart, Shield, Cake, Clock, PartyPopper } from "lucide-react";
+import feature1 from "@/assets/feature-1.png";
+import feature2 from "@/assets/feature-2.png";
+import feature3 from "@/assets/feature-3.png";
+import feature4 from "@/assets/feature-4.png";
+import feature5 from "@/assets/feature-5.png";
+import feature6 from "@/assets/feature-6.png";
 
 const features = [
   {
-    icon: Sparkles,
+    image: feature1,
     title: "Праздник без забот",
     description: "От Вас только желание - остальное мы организуем!",
-    color: "text-yellow-500"
   },
   {
-    icon: Heart,
+    image: feature2,
     title: "Уникальность",
     description: "Индивидуальные сценарии - такой праздник будет только у Вас!",
-    color: "text-pink-500"
   },
   {
-    icon: PartyPopper,
+    image: feature3,
     title: "Новые костюмы",
     description: "Яркие костюмы аниматоров на любой вкус",
-    color: "text-purple-500"
   },
   {
-    icon: Shield,
+    image: feature4,
     title: "Безопасность",
     description: "Просторное, светлое и безопасное помещение в центре города",
-    color: "text-blue-500"
   },
   {
-    icon: Cake,
+    image: feature5,
     title: "Банкет и кэнди-бар",
     description: "Красивая сервировка стола входит во все пакеты",
-    color: "text-orange-500"
   },
   {
-    icon: Clock,
+    image: feature6,
     title: "Продуманный тайминг",
     description: "Активности распределены так, чтобы дети не уставали",
-    color: "text-green-500"
   }
 ];
 
@@ -56,7 +55,11 @@ export const Features = () => {
               key={index}
               className="group bg-card rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-border"
             >
-              <feature.icon className={`h-12 w-12 ${feature.color} mb-4 group-hover:scale-110 transition-transform duration-300`} />
+              <img 
+                src={feature.image} 
+                alt={feature.title}
+                className="h-24 w-24 mb-4 group-hover:scale-110 transition-transform duration-300 object-contain"
+              />
               <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
             </div>
