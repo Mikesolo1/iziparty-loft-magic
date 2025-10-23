@@ -58,7 +58,7 @@ export const Features = () => {
               <img 
                 src={feature.image} 
                 alt={feature.title}
-                className="h-24 w-24 mb-4 group-hover:scale-110 transition-transform duration-300 object-contain"
+                className="h-32 w-32 mb-4 group-hover:scale-110 transition-transform duration-300 object-contain"
               />
               <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
               <p className="text-muted-foreground">{feature.description}</p>
